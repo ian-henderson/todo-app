@@ -1,0 +1,68 @@
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: .5rem 0;
+}
+
+.toDoContainer,
+.doneContainer {
+  margin: 0 auto;
+  max-width: 24rem;
+  padding: 1rem;
+}
+
+.toDoContainer {
+  margin: 2rem auto 0;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 .25rem 1rem -.5rem rgba(0, 0, 0, .75);
+}
+
+.addTaskBox,
+.item {
+  padding: .5rem 0;
+  display: block;
+  width: 100%;
+}
+
+.addTaskBox {
+  padding: .5rem;
+  padding-left: .75rem;
+  margin-bottom: .5rem;
+  font-size: .75rem;
+  border: 0 none;
+  outline: 0 none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.addTaskBox:focus {
+  border-bottom: 1px solid black;
+}
+
+::selection {
+  background-color: transparent;
+}
+
+.doneContainer .item {
+  opacity: 0.5;
+}
