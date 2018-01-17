@@ -6,7 +6,7 @@ const Task = props =>
     <label className="item">
       <input
         defaultChecked={props.task.completed}
-        onClick={(event) => props.onCheckboxClick(event, props.task.text)}
+        onClick={event => props.onCheckboxClick(event, props.task.id)}
         type="checkbox"
       />
       &nbsp;{props.task.text}
@@ -16,7 +16,7 @@ const Task = props =>
 class TodoApp extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { input: "", data: [] }
+    this.state = { data: [], id: 0, input: "" }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.toggleTask = this.toggleTask.bind(this)
@@ -29,17 +29,17 @@ class TodoApp extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    const { input, data } = this.state
+    const { data, id, input } = this.state
     if (input.length > 0) {
-      data.push({ text: input, completed: false })
-      this.setState({ input: "", data })
+      data.push({ text: input, completed: false, id })
+      this.setState({ data, id: id + 1, input: "" })
     }
   }
 
-  toggleTask(event, taskText) {
+  toggleTask(event, id) {
     event.preventDefault()
     const { data } = this.state
-    const index = data.findIndex(task => task.text === taskText)
+    const index = data.findIndex(task => task.id === id)
     if (index !== null) {
       data[index].completed = !data[index].completed
       this.setState({ data })
