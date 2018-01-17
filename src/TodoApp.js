@@ -6,7 +6,7 @@ const Task = props =>
     <label className="item">
       <input 
         defaultChecked={props.task.completed}
-        onClick={() => props.onCheckboxClick(props.task.text)}
+        onClick={(event) => props.onCheckboxClick(event, props.task.text)}
         type="checkbox" 
       /> 
       &nbsp;{props.task.text}
@@ -23,20 +23,21 @@ class TodoApp extends React.Component {
   }
   
   handleChange(event) {
-    this.setState({ input: event.target.value })
   	event.preventDefault()
+    this.setState({ input: event.target.value })
   }
   
   handleSubmit(event) {
+    event.preventDefault()
     const { input, data } = this.state
     if (input.length > 0) {
       data.push({ text: input, completed: false })
       this.setState({ input: "", data })
     }
-    event.preventDefault()
   }
 
-  toggleTask(taskText) {
+  toggleTask(event, taskText) {
+    event.preventDefault()
     const { data } = this.state
     const index = data.findIndex(task => task.text === taskText)
     if (index !== null) {
