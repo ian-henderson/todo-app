@@ -2,31 +2,31 @@ import React from 'react'
 import './TodoApp.css'
 
 const Task = props =>
-	<div>
+  <div>
     <label className="item">
-      <input 
+      <input
         defaultChecked={props.task.completed}
         onClick={(event) => props.onCheckboxClick(event, props.task.text)}
-        type="checkbox" 
-      /> 
+        type="checkbox"
+      />
       &nbsp;{props.task.text}
     </label>
   </div>
 
 class TodoApp extends React.Component {
-	constructor(props) {
-  	super(props)
-  	this.state = { input: "", data: [] }
+  constructor(props) {
+    super(props)
+    this.state = { input: "", data: [] }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.toggleTask = this.toggleTask.bind(this)
   }
-  
+
   handleChange(event) {
-  	event.preventDefault()
+    event.preventDefault()
     this.setState({ input: event.target.value })
   }
-  
+
   handleSubmit(event) {
     event.preventDefault()
     const { input, data } = this.state
@@ -45,7 +45,7 @@ class TodoApp extends React.Component {
       this.setState({ data })
     }
   }
-  
+
   render() {
     const { data, input } = this.state
     return (
@@ -54,13 +54,13 @@ class TodoApp extends React.Component {
           <h1>To-Do List</h1>
           <br />
           <div>
-          <form onSubmit={this.handleSubmit}>
-            <input 
-              className="addTaskBox" 
-              placeholder="+ Add Task" 
-              onChange={this.handleChange} 
-              value={input} 
-            />
+            <form onSubmit={this.handleSubmit}>
+              <input
+                className="addTaskBox"
+                placeholder="+ Add Task"
+                onChange={this.handleChange}
+                value={input}
+              />
             </form>
           </div>
           {data.filter(task => !task.completed).map((task, index) =>
